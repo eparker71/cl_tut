@@ -51,10 +51,25 @@ cat $FILE_NAME
 echo "Now, just print the first line"
 awk "NR==1{print;exit}" $FILE_NAME
 
+# copy $FILE_NAME to $ROOT/$FILE 
+# $ROOT/$FILE uses the root which is "project" and the file which is "file1.txt"
+# this will expand to: cp project/app/web/file1.txt project/file1.txt
 cp $FILE_NAME $ROOT/$FILE 
+
+# change directory - this will put us into the ROOT directory
+pwd
 cd $ROOT
+pwd
 ls -la
 chmod 755 $FILE
 ls -la
+
+# download a file from the web
+# this will download the file vue.js to the current directory
+if [ -e vue.js ]
+then
+  rm vue.js
+fi
+curl -O https://cdn.jsdelivr.net/npm/vue/dist/vue.js
 
 
