@@ -9,6 +9,7 @@ FILE_NAME="$DIR_NAME/file1.txt"
 # backticks allow us to execute a command 
 # note we can use our variables now by adding $ in front of them
 
+# basename, dirname -- return filename or directory portion of pathname
 DIR=`dirname $FILE_NAME`
 FILE=`basename $FILE_NAME`
 
@@ -32,8 +33,7 @@ echo "HERE=$HERE"
 # Here we have some logic using an if statement
 # This says, if the $ROOT directory exists (-e) 
 # then do the following
-if [ -e $ROOT ] 
-then
+if [ -e $ROOT ]; then
   echo "Removing data ..."
   rm -Rf $ROOT
 fi
@@ -60,16 +60,23 @@ cp $FILE_NAME $ROOT/$FILE
 pwd
 cd $ROOT
 pwd
+
+# ls is used to list files
 ls -la
+
+# chmod - change file modes or ACL's
 chmod 755 $FILE
+
+# list the files again so we can see the change
 ls -la
 
 # download a file from the web
-# this will download the file vue.js to the current directory
-if [ -e vue.js ]
-then
+# first, let's make sure we don't already have it
+# if we do, let's remove it and run curl again
+if [ -e vue.js ]; then
   rm vue.js
 fi
+# this will download the file vue.js to the current directory
 curl -O https://cdn.jsdelivr.net/npm/vue/dist/vue.js
 
 
